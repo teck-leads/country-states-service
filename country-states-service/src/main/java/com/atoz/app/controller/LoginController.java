@@ -3,14 +3,18 @@ package com.atoz.app.controller;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +31,12 @@ public class LoginController {
 	private LoginService service;
 	@Autowired
 	private TodoService todoService;
+	
+	@InitBinder
+	public void initiBinder(WebDataBinder binder) {
+		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, false));
+	}
 
 	@GetMapping("/login")
 	public String loginMessage(ModelMap model) {
@@ -108,9 +118,7 @@ public class LoginController {
 		model.addAttribute("idKey", todo.getId());
 		model.addAttribute("userKey",todo.getUser());
 		model.addAttribute("descKey", todo.getDesc());
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
-		String strDate = dateFormat.format(todo.getTargetDate());  
-		model.addAttribute("dateKey", strDate);
+		model.addAttribute("dateKey", todo.getTargetDate());
 		
 		return "addtodo";
 	}

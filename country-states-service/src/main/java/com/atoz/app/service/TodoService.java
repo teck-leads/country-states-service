@@ -1,12 +1,8 @@
 package com.atoz.app.service;
 
-import java.sql.Timestamp;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
@@ -23,20 +19,10 @@ public class TodoService {
 	private static int count=3;
 	
 	static {
-		DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-
-		Date today = new Date();
-		Date todayWithZeroTime=null;
-
-		try {
-			 todayWithZeroTime = formatter.parse(formatter.format(today));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		todos=new ArrayList<Todo>(Arrays.asList(new Todo(1, "madhav", "Spring MVC", new Timestamp(new Date().getTime()), false), 
-				new Todo(2, "teja", "Oracle ERP apps", new Timestamp(new Date().getTime()), false),
-				new Todo(3, "teja", "Cloud platform", new Timestamp(new Date().getTime()), false)));
+		
+		todos=new ArrayList<Todo>(Arrays.asList(new Todo(1, "madhav", "Spring MVC", new Date(), false), 
+				new Todo(2, "teja", "Oracle ERP apps", new Date(), false),
+				new Todo(3, "teja", "Cloud platform", new Date(), false)));
 	}
 	
 	public List<Todo> retrieveTodos() throws ParseException{
@@ -70,10 +56,9 @@ public class TodoService {
 	
 	public void addTodo(Todo todo) throws ParseException {
 		
-		 String sDate1=String.valueOf(todo.getSTargetDate());
-		    Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);  
-		
-        todo.setTargetDate(date1);
+//		String sDate1 = String.valueOf(todo.getSTargetDate());
+//		Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);
+//		todo.setTargetDate(date1);
 		todo.setId(++count);
 		todos.add(todo);
 	}
@@ -91,10 +76,9 @@ public class TodoService {
 	
 	public void updateTodo(int id, Todo newtodo) throws ParseException{
 		
-		 String sDate1=String.valueOf(newtodo.getSTargetDate());
-		    Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);  
-		
-		    newtodo.setTargetDate(date1);
+//		 String sDate1=String.valueOf(newtodo.getSTargetDate());
+//		    Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);  
+//		    newtodo.setTargetDate(date1);
 		newtodo.setId(id);
 		Iterator<Todo> iterator = todos.iterator();
 		while (iterator.hasNext()) {

@@ -3,6 +3,8 @@
 <%@ page isELIgnored="false"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -32,7 +34,7 @@
 			<tr>
 				<td>${todo.user }</td>
 				<td>${todo.desc}</td>
-				<td>${todo.targetDate}</td>
+				<td><fmt:formatDate value="${todo.targetDate}" pattern="dd/MM/yyyy"/></td>
 				<td>${todo.done}</td>
 				<td><a href="/countries-services/update?id=${todo.id}" class="btn btn-info">Edit</a></td>
 				<td><a href="/countries-services/delete?id=${todo.id}" class="btn btn-outline-danger">Remove</a></td>

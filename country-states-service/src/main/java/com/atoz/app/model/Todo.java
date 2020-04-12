@@ -17,7 +17,7 @@ public class Todo {
 	private int id;
 	private String user;
 	private String desc;
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	//@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private Date targetDate;
 	private String sTargetDate;
 	private boolean done;
