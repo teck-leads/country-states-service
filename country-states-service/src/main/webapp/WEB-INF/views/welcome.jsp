@@ -1,7 +1,7 @@
 <%@include file="common/header.jspf"%>
 <%@include file="common/navigationLogin.jspf"%>
 <div class="container">
-	<h2>Welcome to JSP</h2>
+	<h2>Welcome to ${mynameKey }</h2>
 	<hr>
 	<table class="table table-striped">
 		<tr>

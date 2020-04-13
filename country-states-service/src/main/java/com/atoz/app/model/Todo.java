@@ -2,13 +2,8 @@ package com.atoz.app.model;
 
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.lang.Nullable;
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.val;
 @Data
 @NoArgsConstructor
 
@@ -17,7 +12,6 @@ public class Todo {
 	private int id;
 	private String user;
 	private String desc;
-	//@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private Date targetDate;
 	private String sTargetDate;
 	private boolean done;
