@@ -18,23 +18,13 @@
     </ul>
   </div>
 </nav> -->
-
-<style>
-a.disabled {
-  pointer-events: none;
-  cursor: default;
-}
-</style>
-
 	<nav 
 		class="navbar navbar-expand-lg navbar-light bg-light">
-			<a href="https://spring.io/" class="navbar-brand disabled">SpringBoot MVC</a>
+			<a href="https://spring.io/" class="navbar-brand">SpringBoot MVC</a>
 		<div class="collapse navbar-collapse">
 			<ul class="navbar-nav">
 				<li class="nav-item active"><a href="/countries-services/login"
 					class="nav-link">Home</a></li>
-				<li class="nav-item"><a href="/countries-services/add-todo"
-					class="nav-link">Add Todo</a></li>
 			</ul>
 		</div>
 	</nav>

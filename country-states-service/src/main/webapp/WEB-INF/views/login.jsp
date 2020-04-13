@@ -1,17 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ page isELIgnored="false"%>
-
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<link href="/countries-services/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+<%@include file="common/header.jspf"%>
+<%@include file="common/navigationLogin.jspf"%>
 <div class="container">
 	<h2>Welcome to JSP ${mynameKey } </h2>
 	<hr>
@@ -33,8 +21,5 @@
 		</table>
 	</form>
 	</div>
-	<script type="text/javascript" src="/countries-services/webjars/jquery/3.4.1/jquery.min.js"></script>
-		<script type="text/javascript" src="/countries-services/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js"></script>
+<%@include file="common/footer.jspf"%>
 
-</body>
-</html>

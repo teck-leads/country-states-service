@@ -1,62 +1,38 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ page isELIgnored="false"%>
-
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<link
-	href="/countries-services/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css"
-	rel="stylesheet">
-</head>
+<%@include file="common/header.jspf"%>
 <%@include file="common/navigation.jspf"%>
-<body>
 
-	<div class="container">
-		<h2>Welcome to ${mynameKey }</h2>
-		<table class="table table-striped">
-			<thead>
+<div class="container">
+	<h2>Welcome to ${mynameKey }</h2>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>User</th>
+				<th>Description</th>
+				<th>Target Date</th>
+				<th>Is done?</th>
+				<th>Update</th>
+				<th>Delete</th>
+
+			</tr>
+		</thead>
+		<tbody>
+
+			<c:forEach items="${ todoKey}" var="todo">
 				<tr>
-					<th>User</th>
-					<th>Description</th>
-					<th>Target Date</th>
-					<th>Is done</th>
-					<th>Update</th>
-					<th>Delete</th>
+					<td>${todo.user }</td>
+					<td>${todo.desc}</td>
+					<td><fmt:formatDate value="${todo.targetDate}"
+							pattern="dd/MM/yyyy" /></td>
+					<td>${todo.done}</td>
+					<td><a href="/countries-services/update?id=${todo.id}"
+						class="btn btn-info">Edit</a></td>
+					<td><a href="/countries-services/delete?id=${todo.id}"
+						class="btn btn-outline-danger">Remove</a></td>
 
 				</tr>
-			</thead>
-			<tbody>
+			</c:forEach>
 
-				<c:forEach items="${ todoKey}" var="todo">
-					<tr>
-						<td>${todo.user }</td>
-						<td>${todo.desc}</td>
-						<td><fmt:formatDate value="${todo.targetDate}"
-								pattern="dd/MM/yyyy" /></td>
-						<td>${todo.done}</td>
-						<td><a href="/countries-services/update?id=${todo.id}"
-							class="btn btn-info">Edit</a></td>
-						<td><a href="/countries-services/delete?id=${todo.id}"
-							class="btn btn-outline-danger">Remove</a></td>
-
-					</tr>
-				</c:forEach>
-
-			</tbody>
-		</table>
-	</div>
-	<script type="text/javascript"
-		src="/countries-services/webjars/jquery/3.4.1/jquery.min.js"></script>
-	<script type="text/javascript"
-		src="/countries-services/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js"></script>
-
-
-</body>
-</html>
+		</tbody>
+	</table>
+</div>
+<%@include file="common/footer.jspf"%>

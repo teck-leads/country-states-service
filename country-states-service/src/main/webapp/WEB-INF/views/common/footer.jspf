@@ -1,12 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-
+<script type="text/javascript"
+		src="/countries-services/webjars/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="/countries-services/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="/countries-services/webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+	<script>
+		$('#mydtval').datepicker({
+			format : 'dd/mm/yyyy'
+		});
+	</script>
 </body>
 </html>
