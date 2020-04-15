@@ -5,8 +5,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -19,14 +26,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.atoz.app.model.Todo;
-import com.atoz.app.service.LoginService;
 import com.atoz.app.service.TodoService;
 
 @Controller
 @SessionAttributes("nameKey")
 public class LoginController {
-	@Autowired
-	private LoginService service;
+	
 	@Autowired
 	private TodoService todoService;
 
@@ -39,11 +44,27 @@ public class LoginController {
 	@GetMapping("/")
 	public String loginMessage(Model model) {
 		userNameDisplay(model);
-		model.addAttribute("nameKey", "madhav");
+		model.addAttribute("nameKey", getLoggedInUser());
 		model.addAttribute("pwdKey", "admin");
 		return "welcome";
 	}
-
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest request, HttpServletResponse response) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if(authentication!=null) {
+			new SecurityContextLogoutHandler().logout(request, response, authentication);
+		}
+		return "redirect:/";
+	}
+	
+	
+	private String getLoggedInUser() {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if(principal instanceof UserDetails) {
+			return ((UserDetails) principal).getUsername();
+		}
+		return principal.toString();
+	}
 	@GetMapping("/list-todo")
 	public String todo(String user, Model model) throws ParseException {
 		List<Todo> retrieveTodos = todoService.retrieveTodos();

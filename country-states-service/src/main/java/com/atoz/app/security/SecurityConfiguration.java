@@ -16,13 +16,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	public void configureGlobalSecurity(AuthenticationManagerBuilder auth)
 			throws Exception {
 		PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-		auth.inMemoryAuthentication().withUser("madhav").password(encoder.encode("admin"))
+		auth.inMemoryAuthentication().withUser("madhav").password(encoder.encode("madhav"))
 				.roles("USER", "ADMIN");
 	}
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/login").permitAll()
-				.antMatchers("/", "/*todo*/**").access("hasRole('USER')").and()
+				.antMatchers("/", "/*addtodo*/**").access("hasRole('USER')")
+				.and()
+				.csrf().disable()
 				.formLogin();
 	}
 }
